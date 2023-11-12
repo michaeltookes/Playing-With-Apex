@@ -16,4 +16,16 @@ public class AccountTriggerHandlerTest {
         
         Assert.areEqual(acc.Type == 'Prospect', acc.Type == 'Prospect', 'Values match!');
     }
+
+    @isTest
+    static void testHighValueAccounts(){
+        Account acc = [SELECT Id, Name, Type, AnnualRevenue, Description
+               		   FROM Account
+               		   WHERE Name = 'Salesforce'][0];
+
+        acc.AnnualRevenue = 5000000;
+        update acc;
+        
+        Assert.areEqual(acc.Description == 'High Value Accounts', acc.Description == 'High Value Accounts', 'Values Match');
+    }
 }
