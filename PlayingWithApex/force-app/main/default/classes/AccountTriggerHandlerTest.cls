@@ -27,5 +27,6 @@ public class AccountTriggerHandlerTest {
         update acc;
         
         Assert.areEqual(acc.Description == 'High Value Accounts', acc.Description == 'High Value Accounts', 'Values Match');
+        Assert.areEqual(acc.Description == ' ', acc.Description == 'High Value Accounts', 'Values Match');
     }
 }
