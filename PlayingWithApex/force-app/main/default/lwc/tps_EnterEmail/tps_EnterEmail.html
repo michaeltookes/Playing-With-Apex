@@ -1,0 +1,19 @@
+<template>
+    <div class="slds-size_medium">
+        <lightning-card icon-name="standard:email" title="Enter Your Email Address">
+            <lightning-layout>
+                <lightning-record-edit-form object-api-name="Contact">
+                    <lightning-messages></lightning-messages>
+                    <lightning-layout-item>
+                        <div class="slds-p-left_small">
+                            <lightning-input-field field-name="Email"></lightning-input-field>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-record-edit-form>
+            </lightning-layout>
+            <div class="slds-align_absolute-center slds-p-top_x-small">
+                <lightning-button variant="brand" label="Search"></lightning-button>
+            </div>
+        </lightning-card>
+    </div>
+</template>
