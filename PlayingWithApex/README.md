@@ -16,3 +16,20 @@ The `sfdx-project.json` file contains useful configuration information for your 
 - [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
 - [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
 - [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+
+
+
+Theodore's Pizza Shoppe App
+
+Going to create a pizza app in Salesforce
+
+Objects and Fields:
+- Pizza
+    - Size (small, medium, large, extra large)
+    - Crust (Thin, Regular, Stuffed)
+    - Sauce (Marinara, Alredo)
+    - Topping (Cheese, Pepperoni, Sausage) --> Just these three to start
+- Stores (Based on the zip code that a user provides)
+    - Austin, Tx --> One location for now and will add more once we have a better understanding of how we want to set things up. 
+- Order
+    - 
