@@ -6,14 +6,24 @@
                     <lightning-messages></lightning-messages>
                     <lightning-layout-item>
                         <div class="slds-p-left_small">
-                            <lightning-input-field field-name="Email"></lightning-input-field>
+                            <lightning-input-field field-name="Email" value={email} onchange={handleInputChange}></lightning-input-field>
                         </div>
                     </lightning-layout-item>
                 </lightning-record-edit-form>
             </lightning-layout>
             <div class="slds-align_absolute-center slds-p-top_x-small">
-                <lightning-button variant="brand" label="Search"></lightning-button>
+                <lightning-button variant="brand" label="Search" onclick={handleSearch}></lightning-button>
             </div>
+            <template if:true={customer}>
+                <template for:each={customer} for:item="customer">
+                    <p key={customer.Name}>{customer.Name}</p>
+                </template>
+            </template>
+            <template if:true={error}>
+                <lightning-layout-item>
+                    <p class="slds-text-color_error">{error}</p>
+                </lightning-layout-item>
+            </template>
         </lightning-card>
     </div>
 </template>
