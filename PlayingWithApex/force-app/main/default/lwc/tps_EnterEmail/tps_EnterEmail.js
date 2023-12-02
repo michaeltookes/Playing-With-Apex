@@ -6,6 +6,7 @@ export default class Tps_EnterEmail extends LightningElement {
     @track email = '';
     @track customer;
     @track error;
+    @track noContactFoundMessage = 'No Contact found for this email address. Please try again or create an Account.';
 
     handleInputChange(event) {
         this.email = event.target.value;
@@ -14,8 +15,13 @@ export default class Tps_EnterEmail extends LightningElement {
     handleSearch() {
         lookupByEmail({ email: this.email})
             .then(result => {
-                this.customer = result;
-                this.error = undefined;
+                if (result && result.length > 0) {
+                    this.customer = result;
+                    this.error = undefined;
+                } else {
+                    this.customer = undefined;
+                    this.error = this.noContactFoundMessage;
+                }
             })
             .catch(error => {
                 this.error = error.message;
