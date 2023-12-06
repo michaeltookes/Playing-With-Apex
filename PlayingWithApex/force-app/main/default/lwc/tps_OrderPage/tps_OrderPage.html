@@ -4,14 +4,17 @@
             <lightning-messages></lightning-messages>
             <div class="slds-grid slds-var-m-left_small slds-var-m-right_small">
                 <div class="slds-col slds-size_1-of-2">
-                    <lightning-input-field field-name="tps_Size__c" name="tps_Size__c" value={inputSize} onchange={handleInputChange}></lightning-input-field>
-                    <lightning-input-field field-name="tps_Sauce__c" value={inputSauce}></lightning-input-field>
+                    <lightning-input-field field-name="tps_Size__c" value={inputSize} required="true" onchange={handleSizeChange}></lightning-input-field>
+                    <lightning-input-field field-name="tps_Sauce__c" value={inputSauce} required="true" onchange={handleSauceChange}></lightning-input-field>
                     <lightning-input-field field-name="tps_Price__c" value={result} read-only="true"></lightning-input-field> 
                 </div>
                 <div class="slds-col slds-size_1-of-2">
-                    <lightning-input-field field-name="tps_Crust__c" value={inputCrust}></lightning-input-field>
-                    <lightning-input-field field-name="tps_Topping__c" value={inputTopping}></lightning-input-field>
+                    <lightning-input-field field-name="tps_Crust__c" value={inputCrust} required="true" onchange={handleCrustChange}></lightning-input-field>
+                    <lightning-input-field field-name="tps_Topping__c" value={inputTopping} required="true" onchange={handleToppingChange}></lightning-input-field>
                 </div>
+            </div>
+            <div class="slds-clearfix">
+                <lightning-button-icon icon-name="action:new" size="medium" title="Add Row" onclick={addRow}><label>Add Row</label></lightning-button-icon>
             </div>
             <div class="slds-align_absolute-center slds-var-p-top_medium">
                 <lightning-button class="slds-var-m-right_x-small" variant="Neutral" label="Cancel"></lightning-button>
