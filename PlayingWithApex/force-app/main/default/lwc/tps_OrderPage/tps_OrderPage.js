@@ -2,55 +2,59 @@ import { LightningElement, track } from 'lwc';
 
 export default class Tps_OrderPage extends LightningElement {
 
-    @track inputSize = '';
-    @track inputCrust = '';
-    @track inputSauce = '';
-    @track inputTopping = '';
+   @track itemList = [
+        {
+            id: 0,
+            inputSize: '',
+            inputCrust: '',
+            inputSauce: '',
+            inputTopping: '',
+            sizePrice: 0,
+            crustPrice: 0,
+            saucePrice: 0,
+            toppingPrice: 0,
+            result: 0
+        }
+    ];
 
-    @track sizePrice = 0;
-    @track crustPrice = 0;
-    @track saucePrice = 0;
-    @track toppingPrice = 0;
+    keyIndex = 0;
 
-    @track result = 0;
+    addRow() {
+        ++this.keyIndex;
+        var newItem = [{ 
+            id: this.keyIndex,
+            inputSize: '',
+            inputCrust: '',
+            inputSauce: '',
+            inputTopping: '',
+            sizePrice: 0,
+            crustPrice: 0,
+            saucePrice: 0,
+            toppingPrice: 0,
+            result: 0
+        }];
+        
+        this.itemList = this.itemList.concat(newItem);
+    }
     
-    handleSizeChange(event){
+    handleInputChange(event) {
+        const fieldName = event.target.name;
+        const value = event.target.value;
+        const sectionIndex = event.target.dataset.section;
 
-        const size = event.target.value;
-        console.log('Size: ' + size);
-        this.sizePrice = this.calculateSizePrice(size);
-        console.log('Size Price: ' + this.sizePrice);
-        this.updateTotalPrice(this.sizePrice);
+        let item = this.itemList[sectionIndex];
 
-    }
+        if (fieldName === 'tps_Size__c') {
+            item.sizePrice = this.calculateSizePrice(value);
+        } else if (fieldName === 'tps_Crust__c') {
+            item.crustPrice = this.calculateCrustPrice(value);
+        } else if (fieldName === 'tps_Sauce__c') {
+            item.saucePrice = this.calculateSaucePrice(value);
+        } else if (fieldName === 'tps_Topping__c') {
+            item.toppingPrice = this.calculateToppingPrice(value);
+        }
 
-    handleCrustChange(event) {
-
-        const crust = event.target.value;
-        console.log('Crust: ' + crust);
-        this.crustPrice = this.calculateCrustPrice(crust);
-        console.log('Crust Price: ' + this.crustPrice);
-        this.updateTotalPrice(this.crustPrice);
-
-    }
-
-    handleSauceChange(event) {
-
-        const sauce = event.target.value;
-        console.log('Crust: ' + sauce);
-        this.saucePrice = this.calculateSaucePrice(sauce);
-        console.log('Sauce Price: ' + this.saucePrice);
-        this.updateTotalPrice(this.saucePrice);
-
-    }
-
-    handleToppingChange(event) {
-
-        const topping = event.target.value;
-        console.log('Topping: ' + topping);
-        this.toppingPrice = this.calculateToppingPrice(topping);
-        console.log('Topping Price: ' + this.toppingPrice);
-        this.updateTotalPrice(this.toppingPrice);
+        item.result = item.sizePrice + item.crustPrice + item.saucePrice + item.toppingPrice;
 
     }
 
@@ -80,7 +84,7 @@ export default class Tps_OrderPage extends LightningElement {
             price += 2;
         }
         return price;
-        console.log('Price: ' + price);
+
     }
 
     calculateSaucePrice(sauce) {
@@ -107,12 +111,6 @@ export default class Tps_OrderPage extends LightningElement {
         }
         return price;
     
-    }
-
-    updateTotalPrice() {
-        
-        this.result = this.sizePrice + this.crustPrice + this.saucePrice + this.toppingPrice;
-        console.log('Total Price: ' + this.result);
     }
 
 }
